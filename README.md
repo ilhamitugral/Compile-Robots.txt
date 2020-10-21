@@ -7,7 +7,7 @@ Please edit `compile_robots.py` and change `site` variable.
 For Example:
 
 ```
-site = 'https://www.google.com
+site = 'https://www.google.com'
 ```
 
 You can edit Robots.
