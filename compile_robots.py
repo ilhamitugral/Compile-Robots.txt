@@ -2,19 +2,15 @@
 
 Robots.txt Compiler
 @author: Ilhami TUGRAL <ilhamitugral@gmail.com>
-@date: 10/21/20
+@date: 11/2/20
 
 """
 
 import requests
+import sys
 
-# Target website
-site = 'https://example.com'
-
-# We're converting https://example.com/ to https://example.com
-if site.endswith('/'):
-    site = site[0:len(site) - 1]
-
+def drawError(value):
+    print("\n{0}\n".format(value))
 
 def ReadRobots(address):
     # We're sending request.
@@ -37,6 +33,7 @@ def ReadRobots(address):
             if not i.startswith('#') and not i == "":
                 info = i.split(':')
 
+                # We're changing ' :' to ':'
                 info[1] = info[1].replace(' ', '')
 
                 # If parameter is User-agent, we are changing rule.
@@ -72,22 +69,43 @@ def ReadRobots(address):
             'message': 'Robots.txt unreachable: ' + str(rq.status_code),
         }
 
+if len(sys.argv) > 1:
+    # Target website
+    if isinstance(sys.argv[1], str):
+        site = sys.argv[1]
 
-# We are sending request root website
-r = requests.get(site)
+        if(sys.argv[1].startswith("http")):
+            # We're converting https://example.com/ to https://example.com
+            if site.endswith('/'):
+                site = site[0:len(site) - 1]
 
-# If website is reachable, we can start to operations.
-if r.status_code == 200:
+            # We are sending request root website
+            r = requests.get(site)
 
-    # Let's compile here.
-    robotsData = ReadRobots(site)
+            # If website is reachable, we can start to operations.
+            if r.status_code == 200:
 
-    # And let's check.
-    if robotsData['status'] == 'success':
-        print(robotsData)
+                # Let's compile here.
+                robotsData = ReadRobots(site)
+
+                # And let's check.
+                if robotsData['status'] == 'success':
+                    print(robotsData)
+                else:
+                    print(robotsData['message'])
+
+            else:
+                # Let's print website is unreachable error.
+                drawError('Connection Error: ' + str(r.status_code))
+        elif sys.argv[1] == "-h":
+            # Let's show example using
+            drawError("Example use: \"compile_robots.py [https://example.com]\"")
+        else:
+            # If format is wrong: lets print errpr
+            drawError("Error: Website invalid.")
     else:
-        print(robotsData['message'])
-
+        # If data is not string:
+        drawError("Error: Invalid value.")
 else:
-    # Let's print website is unreachable error.
-    print('Connection Error: ' + str(r.status_code))
+    # Let's show example using
+    drawError("Error: You need to add website. Help: \"compile_robots.py -h\"")
