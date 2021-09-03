@@ -1,8 +1,8 @@
-## Robots.txt Compiler
+# Robots.txt Compiler
 Formats the rules in robots.txt by formatting them. Tested on Python 3.
 
-### How To Use?
-Please edit `compile_robots.py [website]` and change `site` variable. And this script returns; **allowed sites**, **disallowed sites** and **sitemaps**
+## How To Use?
+Open `cmd` or `terminal` and `compile_robots.py [website]` and change `website` variable. And this script returns; **allowed sites**, **disallowed sites** and **sitemaps**
 
 `status`: Robots.txt status (str)\
 `blacklist`: Disallowed sites. (list)\
@@ -24,7 +24,7 @@ And Result:
 }
 ```
 
-You can edit Robots.
+You can edit `compile_robots.py`.
 For Example:
 ```
 robots = ["*", "Google-Bot"]
