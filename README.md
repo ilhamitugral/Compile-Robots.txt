@@ -21,7 +21,7 @@ python3 compile_robots.py https://github.com
 ```
 
 And Result:
-```
+```python
 {
     'status': 'success',
     'sitemap': [],
@@ -32,6 +32,6 @@ And Result:
 
 You can edit `compile_robots.py`.
 For Example:
-```
+```python
 robots = ["*", "Google-Bot"]
 ```
