@@ -10,9 +10,12 @@ compile_robots.py [website]
 
 And this script returns; **allowed sites**, **disallowed sites** and **sitemaps**
 
-`status`: Robots.txt status (str)\
-`blacklist`: Disallowed sites. (list)\
-`whitelist`: Allowed sites (list)
+| Codes | Description |
+| -- | -- |
+| `status` | Robots.txt status (str) |
+| `sitemap` | Sitemap.xml files. (list) |
+| `blacklist` | Disallowed sites. (list) |
+| `whitelist` | Allowed sites (list) |
 
 For Example:
 
